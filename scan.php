@@ -80,8 +80,17 @@ class SecurityValidator extends NodeVisitorAbstract
 
         // Funções de sanitização
         if (
-            ($node instanceof Node\Expr\FuncCall && $node->name instanceof Node\Name && in_array(strtolower((string)$node->name), self::SANITIZING_FUNCTIONS, true)) ||
-            ($node instanceof Node\Expr\Cast && in_array(strtolower($node->getAttribute('kind')), self::SANITIZING_FUNCTIONS, true))
+            $node instanceof Node\Expr\FuncCall &&
+            $node->name instanceof Node\Name &&
+            in_array(strtolower((string)$node->name), self::SANITIZING_FUNCTIONS, true)
+        ) {
+            return $this->memoizationCache[$nodeHash] = false;
+        }
+        if (
+            $node instanceof Node\Expr\Cast
+            && ($kind = $node->getAttribute('kind')) !== null
+            && is_string($kind)
+            && in_array(strtolower($kind), self::SANITIZING_FUNCTIONS, true)
         ) {
             return $this->memoizationCache[$nodeHash] = false;
         }
