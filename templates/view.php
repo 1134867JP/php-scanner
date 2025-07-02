@@ -29,7 +29,7 @@
           <h3><?= htmlspecialchars($fileName, ENT_QUOTES, 'UTF-8') ?> (Erros: <?= count($fileIssues) ?>)</h3>
           
           <?php if (empty($fileIssues)): ?>
-            <p class="ok">Nenhuma issue detectada!</p>
+            <p class="ok">Nenhuma vulnerabilidade detectada!</p>
           <?php else: ?>
             <?php uasort($fileIssues, function ($a, $b) {
                 $order = ['CRITICAL' => 4, 'HIGH' => 3, 'MEDIUM' => 2, 'LOW' => 1];
