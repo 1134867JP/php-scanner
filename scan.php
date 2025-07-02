@@ -88,11 +88,13 @@ class SecurityValidator extends NodeVisitorAbstract
         }
         if (
             $node instanceof Node\Expr\Cast
-            && ($kind = $node->getAttribute('kind')) !== null
-            && is_string($kind)
-            && in_array(strtolower($kind), self::SANITIZING_FUNCTIONS, true)
         ) {
-            return $this->memoizationCache[$nodeHash] = false;
+            $kind = $node->getAttribute('kind');
+            if ($kind !== null && is_string($kind)) {
+                if (in_array(strtolower($kind), self::SANITIZING_FUNCTIONS, true)) {
+                    return $this->memoizationCache[$nodeHash] = false;
+                }
+            }
         }
 
         // NOVO: Detecta qualquer acesso a superglobal, mesmo em profundidade (ex: $_FILES['file']['name'])
