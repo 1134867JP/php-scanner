@@ -1,0 +1,38 @@
+# ## Dependências do Composer ##
+# Ignora a pasta que contém todas as bibliotecas de terceiros.
+# Elas podem ser reinstaladas com `composer install`.
+/vendor/
+
+# ## Arquivos Gerados pela Aplicação ##
+# Ignora a pasta de uploads temporários.
+/upload/
+
+# ## Arquivo de Lock do Composer ##
+# Garante que as versões das dependências sejam consistentes.
+# É uma boa prática versioná-lo, mas pode ser ignorado para evitar conflitos.
+composer.lock
+
+# ## Arquivos de Sistema Operacional ##
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ## Logs ##
+# Ignora arquivos de log.
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ## Arquivos de Configuração de IDEs ##
+.idea/
+.vscode/
+*.swp
+*~
+
+# ## Arquivos de Ambiente ##
+# Nunca versione arquivos de ambiente com senhas ou chaves de API.
+.env
+.env.local
+.env.*.local

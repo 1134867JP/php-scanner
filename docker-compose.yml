@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+      - ./upload:/var/www/html/upload
+    command: sh -c "mkdir -p /var/www/html/upload && chmod -R 777 /var/www/html/upload && apache2-foreground"

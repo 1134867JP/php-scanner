@@ -1,0 +1,127 @@
+:root {
+  --primary-glow: color-mix(in srgb, #a482ff 50%, transparent);
+  --secondary-glow: color-mix(in srgb, #55c1ff 50%, transparent);
+  --bg-color: #1a1a2e;
+  --card-bg-color: rgba(26, 26, 46, 0.4);
+  --card-border-color: rgba(255, 255, 255, 0.2);
+  --card-shadow: 0 8px 32px 0 rgba(19, 19, 31, 0.37);
+  --text-primary: #f0f0f0;
+  --text-secondary: #b3b3e6;
+  --transition-smooth: all 0.3s ease;
+  --font-main: 'Inter', sans-serif;
+  --critical-color: #ff4d4d;
+  --high-color: #ff8c4d;
+  --medium-color: #ffc84d;
+  --low-color: #4d94ff;
+  --ok-color: #27ae60;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { 
+  font-family: var(--font-main); 
+  background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(at 20% 20%, var(--primary-glow) 0px, transparent 50%),
+    radial-gradient(at 80% 80%, var(--secondary-glow) 0px, transparent 50%);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+header { padding: 2.5rem; text-align: center; flex-shrink: 0; }
+header h1 { font-size: 3rem; font-weight: 700; letter-spacing: 1px; text-shadow: 0 0 15px var(--primary-glow); }
+main {
+  max-width: 800px;
+  width: 90%;
+  margin: 1.5rem auto;
+  padding: 2.5rem;
+  background: var(--card-bg-color);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 16px;
+  border: 1px solid var(--card-border-color);
+  box-shadow: var(--card-shadow);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.drop-zone {
+  border: 2px dashed var(--text-secondary);
+  border-radius: 12px;
+  padding: 2.5rem;
+  text-align: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.drop-zone:hover, .drop-zone.hover { 
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.02); 
+}
+.drop-zone input { display: none; }
+button[type="submit"] {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(90deg, #7b88fa, #5887ff);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+button[type="submit"]:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); }
+.results { 
+    margin-top: 2.5rem; 
+    border-top: 1px solid var(--card-border-color); 
+    padding-top: 2.5rem; 
+    width: 100%;
+    /* Permite que os resultados cresçam, centralizando o form quando vazio */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.results h2 { margin-bottom: 1.5rem; font-size: 1.8rem; }
+.results h3 { color: var(--text-secondary); margin-bottom: 1rem; font-weight: 500; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.issue {
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  transition: var(--transition-smooth);
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
+  border-left: 5px solid gray;
+}
+.issue:hover { transform: scale(1.01); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+.error-text { font-weight: 600; cursor: pointer; transition: color 0.3s; }
+.error-text:hover { color: var(--text-primary); }
+.suggestion { display: none; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--card-border-color); color: var(--text-secondary); }
+.ok { color: var(--ok-color); font-weight: 600; background-color: rgba(39, 174, 96, 0.1); padding: 1rem; border-radius: 8px; }
+.severity-tag {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.25rem;
+  margin-right: 10px;
+}
+.issue-critical { border-left-color: var(--critical-color); }
+.issue-critical .severity-tag { background-color: var(--critical-color); }
+.issue-high { border-left-color: var(--high-color); }
+.issue-high .severity-tag { background-color: var(--high-color); }
+.issue-medium { border-left-color: var(--medium-color); }
+.issue-medium .severity-tag { background-color: var(--medium-color); }
+.issue-low { border-left-color: var(--low-color); }
+.issue-low .severity-tag { background-color: var(--low-color); }
+footer { text-align: center; margin: 2rem 0; font-size: 0.9rem; color: var(--text-secondary); flex-shrink: 0;}
